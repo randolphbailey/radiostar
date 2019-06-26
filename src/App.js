@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import { Player } from "video-react";
 import "./components/Player.css";
 import Button from "react-bootstrap/Button";
+import FileUpload from "./components/FileUpload";
 
 const sources = {
   sintelTrailer: "http://media.w3.org/2010/05/sintel/trailer.mp4",
@@ -44,6 +45,7 @@ class App extends React.Component {
             <Button onClick={() => this.setState({ src: sources.bunnyMovie })}>
               Bunny Movie
             </Button>
+            <FileUpload />
           </Col>
         </Row>
       </Container>
