@@ -8,6 +8,8 @@ import { Player } from "video-react";
 import "./components/Player.css";
 import Button from "react-bootstrap/Button";
 import FileUpload from "./components/FileUpload";
+import { GoogleLogin } from "react-google-login";
+import axios from "axios";
 
 const sources = {
   sintelTrailer: "http://media.w3.org/2010/05/sintel/trailer.mp4",
@@ -17,14 +19,50 @@ const sources = {
 };
 
 class App extends React.Component {
-  state = {
-    src: sources.sintelTrailer,
-    info: "This is some info from the App component state"
+  constructor(props) {
+    super(props);
+    this.state = {
+      src: sources.sintelTrailer,
+      info: "This is some info from the App component state",
+      isAuthenticated: false,
+      user: null,
+      token: ""
+    };
+    this.logout = this.logout.bind(this);
+    this.googleResponse = this.googleResponse.bind(this);
+    this.onFailure = this.onFailure.bind(this);
+  }
+
+  logout() {
+    this.setState({ isAuthenticated: false, user: null, token: "" });
+  }
+
+  googleResponse(response) {
+    console.log(response);
+  }
+
+  onFailure = error => {
+    alert("error");
   };
+
   render() {
+    let content = !!this.state.isAuthenticated ? (
+      "Placeholder"
+    ) : (
+      <GoogleLogin
+        clientId="345865852310-df4mg5u8k9s73d9tgehqum5jd79bh8vh.apps.googleusercontent.com"
+        onSuccess={this.googleResponse}
+        onFailure={this.googleResponse}
+        buttonText="Login"
+        cookiePolicy={"single_host_origin"}
+      />
+    );
     return (
       <Container>
-        <Nav />
+        <Row>
+          <Col className="h1">radiostar</Col>
+          <Col className="h1 text-right">{content}</Col>
+        </Row>
         <Row>
           <Col className="col-9">
             <Row>
