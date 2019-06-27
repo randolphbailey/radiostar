@@ -24,11 +24,11 @@ class FileUpload extends React.Component {
     //Update upload status state to begin upload
     this.setState({ uploadStatus: "Authorizing upload..." });
 
-    axios
-      //request authorization token and upload URL from backend
-      .get("http://localhost:3000/upload/getURL")
+    fetch("http://localhost:3000/upload/getURL")
+      .then(res => res.json())
       //pass upload parameters into file upload method
       .then(res => {
+        let URL = res.uploadUrl;
         //Configure parameters for axios file upload from response received
         let config = {
           //Set required B2 headers
@@ -54,13 +54,16 @@ class FileUpload extends React.Component {
         this.setState({ uploadStatus: "Uploading..." });
 
         //Upload file, return promise to continue chain
-        return axios.post(res.uploadUrl, this.state.file, config);
+        return axios.post(URL, this.state.file, config);
       })
       .then(res => {
         //Send File info back to backend server
-        return axios.post("localhost:3000/upload/fileInfo", res.data);
+        return axios.put("http://localhost:3000/upload/fileInfo", res.data);
       })
-      .then(res => this.setState({ uploadStatus: "Upload Complete!" }))
+      .then(res => {
+        this.setState({ uploadStatus: "Upload Complete!" });
+        return "Success";
+      })
       .catch(err => console.log(err));
   }
 
