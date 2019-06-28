@@ -3,13 +3,12 @@ import "./App.css";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Nav from "./components/Nav";
+//import Nav from "./components/Nav";
 import { Player } from "video-react";
 import "./components/Player.css";
 import Button from "react-bootstrap/Button";
 import FileUpload from "./components/FileUpload";
-import { GoogleLogin } from "react-google-login";
-import axios from "axios";
+//import axios from "axios";
 
 const sources = {
   sintelTrailer: "http://media.w3.org/2010/05/sintel/trailer.mp4",
@@ -28,11 +27,11 @@ class App extends React.Component {
       user: null,
       token: ""
     };
-    this.logout = this.logout.bind(this);
-    this.googleResponse = this.googleResponse.bind(this);
-    this.onFailure = this.onFailure.bind(this);
+    //this.logout = this.logout.bind(this);
+    //this.googleResponse = this.googleResponse.bind(this);
+    //this.onFailure = this.onFailure.bind(this);
   }
-
+  /*
   logout() {
     this.setState({ isAuthenticated: false, user: null, token: "" });
   }
@@ -44,8 +43,9 @@ class App extends React.Component {
   onFailure = error => {
     alert("error");
   };
-
+*/
   render() {
+    /*
     let content = !!this.state.isAuthenticated ? (
       "Placeholder"
     ) : (
@@ -57,11 +57,12 @@ class App extends React.Component {
         cookiePolicy={"single_host_origin"}
       />
     );
+    */
     return (
       <Container>
         <Row>
           <Col className="h1">radiostar</Col>
-          <Col className="h1 text-right">{content}</Col>
+          <Col className="h1 text-right">Login Placeholder</Col>
         </Row>
         <Row>
           <Col className="col-9">

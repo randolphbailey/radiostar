@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 //comment
 
@@ -12,10 +14,14 @@ class FileUpload extends React.Component {
       file: null,
       uploadStatus: "",
       shasum: "",
-      readyToUpload: false
+      readyToUpload: false,
+      title: "",
+      description: ""
     };
     this.handleFile = this.handleFile.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
   }
 
   handleFileUpload(event) {
@@ -29,15 +35,20 @@ class FileUpload extends React.Component {
       //pass upload parameters into file upload method
       .then(res => {
         let URL = res.uploadUrl;
+        let fileName = this.state.file.name;
+        let splitName = fileName.split(".");
+        let extension = splitName.pop();
         //Configure parameters for axios file upload from response received
         let config = {
           //Set required B2 headers
           headers: {
             Authorization: res.authorizationToken,
-            "X-Bz-File-Name": res.vId,
+            "X-Bz-File-Name": res.vId + "." + extension,
             "Content-Type": "b2/x-auto",
             "X-Bz-Content-Sha1": this.state.shasum,
-            "X-Bz-Info-vId": res.vId
+            "X-Bz-Info-vid": res.vId,
+            "X-Bz-Info-title": this.state.title,
+            "X-Bz-Info-description": this.state.description
           },
           //Set up upload event to monitor upload via progress bar
           onUploadProgress: event => {
@@ -101,17 +112,37 @@ class FileUpload extends React.Component {
     Reader.readAsArrayBuffer(file);
   }
 
+  handleTitleChange(e) {
+    this.setState({ title: e.target.value });
+  }
+
+  handleDescriptionChange(e) {
+    this.setState({ description: e.target.value });
+  }
+
   render() {
+    let buttonEnable = !this.state.readyToUpload;
     return (
       <>
-        <form onSubmit={this.handleFileUpload}>
-          <div>
-            <input type="file" onChange={e => this.handleFile(e)} />
-          </div>
-          <br />
-          <div>
-            <button>Upload</button>
-          </div>
+        <form onSubmit={e => e.preventDefault()}>
+          <Form.Control
+            type="text"
+            value={this.state.title}
+            onChange={this.handleTitleChange}
+          />
+          <Form.Control
+            type="text"
+            value={this.state.description}
+            onChange={this.handleDescriptionChange}
+          />
+          <input type="file" onChange={e => this.handleFile(e)} />
+          <Button
+            variant="primary"
+            disabled={buttonEnable}
+            onClick={!buttonEnable ? this.handleFileUpload : null}
+          >
+            Upload
+          </Button>
         </form>
         <ProgressBar
           now={this.state.uploadProgress}
