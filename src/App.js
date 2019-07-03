@@ -62,7 +62,9 @@ class App extends React.Component {
       <Container>
         <Row>
           <Col className="h1">radiostar</Col>
-          <Col className="h1 text-right">Login Placeholder</Col>
+          <Col className="h1 text-right">
+            Login Placeholder | <UploadModal />
+          </Col>
         </Row>
         <Row>
           <Col className="col-9">
@@ -84,7 +86,6 @@ class App extends React.Component {
             <Button onClick={() => this.setState({ src: sources.bunnyMovie })}>
               Bunny Movie
             </Button>
-            <UploadModal />
           </Col>
         </Row>
       </Container>
