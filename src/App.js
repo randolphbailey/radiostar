@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import { Player } from "video-react";
 import "./components/Player.css";
 import Button from "react-bootstrap/Button";
-import FileUpload from "./components/FileUpload";
+import UploadModal from "./components/UploadModal";
 //import axios from "axios";
 
 const sources = {
@@ -84,7 +84,7 @@ class App extends React.Component {
             <Button onClick={() => this.setState({ src: sources.bunnyMovie })}>
               Bunny Movie
             </Button>
-            <FileUpload />
+            <UploadModal />
           </Col>
         </Row>
       </Container>

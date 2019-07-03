@@ -124,18 +124,26 @@ class FileUpload extends React.Component {
     let buttonEnable = !this.state.readyToUpload;
     return (
       <>
-        <form onSubmit={e => e.preventDefault()}>
-          <Form.Control
-            type="text"
-            value={this.state.title}
-            onChange={this.handleTitleChange}
-          />
-          <Form.Control
-            type="text"
-            value={this.state.description}
-            onChange={this.handleDescriptionChange}
-          />
-          <input type="file" onChange={e => this.handleFile(e)} />
+        <Form onSubmit={e => e.preventDefault()}>
+          <Form.Group controlId="title">
+            <Form.Label>Title:</Form.Label>
+            <Form.Control
+              type="text"
+              value={this.state.title}
+              onChange={this.handleTitleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="description">
+            <Form.Label>Description:</Form.Label>
+            <Form.Control
+              type="text"
+              value={this.state.description}
+              onChange={this.handleDescriptionChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="file">
+            <Form.Control type="file" onChange={e => this.handleFile()} />
+          </Form.Group>
           <Button
             variant="primary"
             disabled={buttonEnable}
@@ -143,12 +151,14 @@ class FileUpload extends React.Component {
           >
             Upload
           </Button>
-        </form>
+        </Form>
+        <br />
         <ProgressBar
           now={this.state.uploadProgress}
           label={`${this.state.uploadProgress}%`}
         />
-        <h2>{this.state.uploadStatus}</h2>
+        <br />
+        <h3>{this.state.uploadStatus}</h3>
       </>
     );
   }
