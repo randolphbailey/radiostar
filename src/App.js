@@ -10,61 +10,37 @@ import Button from "react-bootstrap/Button";
 import UploadModal from "./components/UploadModal";
 //import axios from "axios";
 
-const sources = {
-  sintelTrailer: "http://media.w3.org/2010/05/sintel/trailer.mp4",
-  bunnyTrailer: "http://media.w3.org/2010/05/bunny/trailer.mp4",
-  bunnyMovie: "http://media.w3.org/2010/05/bunny/movie.mp4",
-  test: "http://media.w3.org/2010/05/video/movie_300.webm"
-};
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      src: sources.sintelTrailer,
+      sources: [
+        "http://media.w3.org/2010/05/sintel/trailer.mp4",
+        "http://media.w3.org/2010/05/bunny/trailer.mp4",
+        "http://media.w3.org/2010/05/bunny/movie.mp4",
+        "http://media.w3.org/2010/05/video/movie_300.webm"
+      ],
+      src: "",
       info: "This is some info from the App component state",
-      isAuthenticated: false,
+      isAuthenticated: true,
       user: null,
       token: ""
     };
-    //this.logout = this.logout.bind(this);
-    //this.googleResponse = this.googleResponse.bind(this);
-    //this.onFailure = this.onFailure.bind(this);
-  }
-  /*
-  logout() {
-    this.setState({ isAuthenticated: false, user: null, token: "" });
   }
 
-  googleResponse(response) {
-    console.log(response);
-  }
-
-  onFailure = error => {
-    alert("error");
-  };
-*/
   render() {
-    /*
     let content = !!this.state.isAuthenticated ? (
-      "Placeholder"
+      <>
+        Login Placeholder | <UploadModal />
+      </>
     ) : (
-      <GoogleLogin
-        clientId="345865852310-df4mg5u8k9s73d9tgehqum5jd79bh8vh.apps.googleusercontent.com"
-        onSuccess={this.googleResponse}
-        onFailure={this.googleResponse}
-        buttonText="Login"
-        cookiePolicy={"single_host_origin"}
-      />
+      <>Not logged in</>
     );
-    */
     return (
       <Container>
         <Row>
           <Col className="h1">radiostar</Col>
-          <Col className="h1 text-right">
-            Login Placeholder | <UploadModal />
-          </Col>
+          <Col className="h1 text-right">{content}</Col>
         </Row>
         <Row>
           <Col className="col-9">
@@ -78,14 +54,13 @@ class App extends React.Component {
             </Row>
           </Col>
           <Col className="col-3">
-            <Button
-              onClick={() => this.setState({ src: sources.bunnyTrailer })}
-            >
-              Bunny Trailer
-            </Button>
-            <Button onClick={() => this.setState({ src: sources.bunnyMovie })}>
-              Bunny Movie
-            </Button>
+            {this.state.sources.map((val, i) => {
+              return (
+                <Button onClick={() => this.setState({ src: val })}>
+                  Source #{i++}
+                </Button>
+              );
+            })}
           </Col>
         </Row>
       </Container>
