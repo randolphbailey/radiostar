@@ -31,11 +31,14 @@ class FileUpload extends React.Component {
     this.setState({ uploadStatus: "Authorizing upload..." });
 
     fetch("http://localhost:3000/upload/getURL")
+      //Fetch upload info and convert to json
       .then(res => res.json())
       //pass upload parameters into file upload method
       .then(res => {
         let URL = res.uploadUrl;
         let fileName = this.state.file.name;
+
+        //Grab file extension
         let splitName = fileName.split(".");
         let extension = splitName.pop();
         //Configure parameters for axios file upload from response received
@@ -78,7 +81,9 @@ class FileUpload extends React.Component {
       .catch(err => console.log(err));
   }
 
+  //SHA-1 hash generator for file integrity verification
   handleFile(event) {
+    //function to convert byte code to hexadecimal string
     let hexString = function(buffer) {
       const byteArray = new Uint8Array(buffer);
 
@@ -90,6 +95,7 @@ class FileUpload extends React.Component {
 
       return hexCodes.join("");
     };
+
     let file = event.target.files[0];
     this.setState({
       file: file,

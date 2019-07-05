@@ -70,6 +70,30 @@ class Register extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={e => e.preventDefault()}>
+              <Form.Group controlId="first_name">
+                <Form.Label>First Name:</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={this.state.first_name}
+                  onChange={e => this.handleFirstNameChange(e)}
+                />
+              </Form.Group>
+              <Form.Group controlId="last_name">
+                <Form.Label>Last Name:</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={this.state.last_name}
+                  onChange={e => this.handleLastNameChange(e)}
+                />
+              </Form.Group>
+              <Form.Group controlId="email">
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={this.state.email}
+                  onChange={e => this.handleEmailChange(e)}
+                />
+              </Form.Group>
               <Form.Group controlId="username">
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
@@ -89,9 +113,12 @@ class Register extends React.Component {
               <Button
                 variant="primary"
                 onClick={() =>
-                  this.props.handleLogin(
+                  this.props.handleRegister(
                     this.state.username,
-                    this.state.password
+                    this.state.password,
+                    this.state.first_name,
+                    this.state.last_name,
+                    this.state.email
                   )
                 }
               >

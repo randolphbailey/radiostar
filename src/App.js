@@ -3,13 +3,13 @@ import "./App.css";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-//import Nav from "./components/Nav";
 import { Player } from "video-react";
 import "./components/Player.css";
 import Button from "react-bootstrap/Button";
 import UploadModal from "./components/UploadModal";
 import Login from "./components/Login";
 import axios from "axios";
+import Register from "./components/Register";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class App extends React.Component {
         "http://media.w3.org/2010/05/video/movie_300.webm"
       ],
       src: "",
-      info: "This is some info from the App component state",
+      description: "This is some info from the App component state",
       isAuthenticated: false,
       user: null,
       token: ""
@@ -63,11 +63,12 @@ class App extends React.Component {
   render() {
     let content = !!this.state.isAuthenticated ? (
       <>
-        <UploadModal />
+        Welcome {this.state.user} | <UploadModal />
       </>
     ) : (
       <>
-        <Login handleLogin={this.handleLogin} />
+        <Login handleLogin={this.handleLogin} /> |{" "}
+        <Register handleRegister={this.handleRegister} />
       </>
     );
     return (
@@ -84,7 +85,7 @@ class App extends React.Component {
               </Col>
             </Row>
             <Row>
-              <Col>{this.state.info}</Col>
+              <Col>{this.state.description}</Col>
             </Row>
           </Col>
           <Col className="col-3">
