@@ -56,7 +56,7 @@ class App extends React.Component {
           <Col className="col-3">
             {this.state.sources.map((val, i) => {
               return (
-                <Button onClick={() => this.setState({ src: val })}>
+                <Button key={i} onClick={() => this.setState({ src: val })}>
                   Source #{i++}
                 </Button>
               );

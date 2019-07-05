@@ -142,7 +142,7 @@ class FileUpload extends React.Component {
             />
           </Form.Group>
           <Form.Group controlId="file">
-            <Form.Control type="file" onChange={e => this.handleFile()} />
+            <Form.Control type="file" onChange={e => this.handleFile(e)} />
           </Form.Group>
           <Button
             variant="primary"
