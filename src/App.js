@@ -9,7 +9,7 @@ import "./components/Player.css";
 import Button from "react-bootstrap/Button";
 import UploadModal from "./components/UploadModal";
 import Login from "./components/Login";
-//import axios from "axios";
+import axios from "axios";
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends React.Component {
       ],
       src: "",
       info: "This is some info from the App component state",
-      isAuthenticated: true,
+      isAuthenticated: false,
       user: null,
       token: ""
     };
@@ -31,15 +31,44 @@ class App extends React.Component {
 
   handleLogin = (username, password) => {
     console.log(`testing passing function as prop ${username}, ${password}`);
+    axios
+      .post("http://localhost:3000/loginUser", {
+        username,
+        password
+      })
+      .then(res => {
+        if (res.data.auth) {
+          this.setState({
+            isAuthenticated: true,
+            user: username,
+            token: res.data.token
+          });
+        }
+      })
+      .catch(err => console.error("Login Error: ", err));
+  };
+
+  handleRegister = (username, password, first_name, last_name, email) => {
+    axios
+      .post("http://localhost:3000/registerUser", {
+        username,
+        password,
+        first_name,
+        last_name,
+        email
+      })
+      .then(res => console.log(res));
   };
 
   render() {
     let content = !!this.state.isAuthenticated ? (
       <>
-        <Login handleLogin={this.handleLogin} /> | <UploadModal />
+        <UploadModal />
       </>
     ) : (
-      <>Not logged in</>
+      <>
+        <Login handleLogin={this.handleLogin} />
+      </>
     );
     return (
       <Container>

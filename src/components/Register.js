@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -11,11 +11,17 @@ class Login extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
 
     this.state = {
       show: false,
       username: "",
-      password: ""
+      password: "",
+      first_name: "",
+      last_name: "",
+      email: ""
     };
   }
 
@@ -39,16 +45,28 @@ class Login extends React.Component {
     this.setState({ password: e.target.value });
   }
 
+  handleEmailChange(e) {
+    this.setState({ email: e.target.value });
+  }
+
+  handleFirstNameChange(e) {
+    this.setState({ first_name: e.target.value });
+  }
+
+  handleLastNameChange(e) {
+    this.setState({ last_name: e.target.value });
+  }
+
   render() {
     return (
       <>
         <Button variant="primary" onClick={this.handleShow}>
-          Login
+          Register
         </Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
+            <Modal.Title>Register</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={e => e.preventDefault()}>
@@ -77,7 +95,7 @@ class Login extends React.Component {
                   )
                 }
               >
-                Login
+                Register
               </Button>
             </Form>
           </Modal.Body>
@@ -92,4 +110,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Register;
