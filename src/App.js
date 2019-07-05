@@ -8,6 +8,7 @@ import { Player } from "video-react";
 import "./components/Player.css";
 import Button from "react-bootstrap/Button";
 import UploadModal from "./components/UploadModal";
+import Login from "./components/Login";
 //import axios from "axios";
 
 class App extends React.Component {
@@ -28,10 +29,14 @@ class App extends React.Component {
     };
   }
 
+  handleLogin = (username, password) => {
+    console.log(`testing passing function as prop ${username}, ${password}`);
+  };
+
   render() {
     let content = !!this.state.isAuthenticated ? (
       <>
-        Login Placeholder | <UploadModal />
+        <Login handleLogin={this.handleLogin} /> | <UploadModal />
       </>
     ) : (
       <>Not logged in</>
