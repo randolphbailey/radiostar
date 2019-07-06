@@ -26,7 +26,7 @@ class UploadModal extends React.Component {
   render() {
     return (
       <>
-        <Button variant="primary" onClick={this.handleShow}>
+        <Button variant="success" onClick={this.handleShow}>
           Upload File
         </Button>
 

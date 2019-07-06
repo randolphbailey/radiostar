@@ -29,8 +29,35 @@ class App extends React.Component {
     };
   }
 
+  async componentDidMount() {
+    if ("token" in localStorage) {
+      let token = localStorage.getItem("token");
+      await this.setState({ token: token });
+      this.checkAlreadyLoggedIn();
+    }
+  }
+
+  handleLogout = () => {
+    localStorage.clear();
+    this.setState({ isAuthenticated: false, token: "", user: "" });
+  };
+
+  checkAlreadyLoggedIn = () => {
+    let jwtToken = "JWT " + this.state.token;
+    axios
+      .get("http://localhost:3000/returningUser", {
+        headers: { Authorization: jwtToken }
+      })
+      .then(res => {
+        if (res.data.isAuthenticated === true) {
+          this.setState({ isAuthenticated: true, user: res.data.username });
+        } else {
+          this.setState({ token: "" });
+        }
+      });
+  };
+
   handleLogin = (username, password) => {
-    console.log(`testing passing function as prop ${username}, ${password}`);
     axios
       .post("http://localhost:3000/loginUser", {
         username,
@@ -43,6 +70,7 @@ class App extends React.Component {
             user: username,
             token: res.data.token
           });
+          localStorage.setItem("token", res.data.token);
         }
       })
       .catch(err => console.error("Login Error: ", err));
@@ -57,13 +85,22 @@ class App extends React.Component {
         last_name,
         email
       })
-      .then(res => console.log(res));
+      .then(res => {
+        if (res.status === 200) {
+          this.handleLogin(username, password);
+        } else {
+          console.log("Registration Failed");
+        }
+      });
   };
 
   render() {
     let content = !!this.state.isAuthenticated ? (
       <>
-        Welcome {this.state.user} | <UploadModal jwt={this.state.token} />
+        Welcome {this.state.user} | <UploadModal jwt={this.state.token} /> |{" "}
+        <Button onClick={this.handleLogout} variant="warning">
+          Logout
+        </Button>
       </>
     ) : (
       <>
@@ -74,8 +111,12 @@ class App extends React.Component {
     return (
       <Container>
         <Row>
-          <Col className="h1">radiostar</Col>
-          <Col className="h1 text-right">{content}</Col>
+          <Col xs={12} md={3} className="h1">
+            radiostar
+          </Col>
+          <Col xs={12} md={9} className="h1 text-right">
+            {content}
+          </Col>
         </Row>
         <Row>
           <Col className="col-9">
@@ -90,9 +131,10 @@ class App extends React.Component {
           </Col>
           <Col className="col-3">
             {this.state.sources.map((val, i) => {
+              let sourceNum = i + 1;
               return (
                 <Button key={i} onClick={() => this.setState({ src: val })}>
-                  Source #{i++}
+                  Source #{sourceNum}
                 </Button>
               );
             })}
