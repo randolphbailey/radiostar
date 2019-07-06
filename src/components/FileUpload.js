@@ -78,7 +78,9 @@ class FileUpload extends React.Component {
       })
       .then(res => {
         //Send File info back to backend server
-        return axios.put("http://localhost:3000/upload/fileInfo", res.data);
+        return axios.put("http://localhost:3000/upload/fileInfo", res.data, {
+          headers: { Authorization: jwtToken, UserId: this.props.jwt }
+        });
       })
       .then(res => {
         this.setState({ uploadStatus: "Upload Complete!" });
