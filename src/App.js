@@ -63,7 +63,7 @@ class App extends React.Component {
   render() {
     let content = !!this.state.isAuthenticated ? (
       <>
-        Welcome {this.state.user} | <UploadModal />
+        Welcome {this.state.user} | <UploadModal jwt={this.state.token} />
       </>
     ) : (
       <>

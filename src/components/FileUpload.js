@@ -30,7 +30,13 @@ class FileUpload extends React.Component {
     //Update upload status state to begin upload
     this.setState({ uploadStatus: "Authorizing upload..." });
 
-    fetch("http://localhost:3000/upload/getURL")
+    let jwtToken = "JWT " + this.props.jwt;
+
+    console.log(jwtToken);
+
+    fetch("http://localhost:3000/upload/getURL", {
+      headers: { Authorization: jwtToken }
+    })
       //Fetch upload info and convert to json
       .then(res => res.json())
       //pass upload parameters into file upload method

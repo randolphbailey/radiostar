@@ -35,7 +35,7 @@ class UploadModal extends React.Component {
             <Modal.Title>File Upload</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <FileUpload />
+            <FileUpload jwt={this.props.jwt} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
