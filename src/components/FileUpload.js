@@ -34,7 +34,7 @@ class FileUpload extends React.Component {
 
     console.log(jwtToken);
 
-    fetch("http://localhost:3000/upload/getURL", {
+    fetch("https://api.videopsi.com/upload/getURL", {
       headers: { Authorization: jwtToken }
     })
       //Fetch upload info and convert to json
@@ -78,7 +78,7 @@ class FileUpload extends React.Component {
       })
       .then(res => {
         //Send File info back to backend server
-        return axios.put("http://localhost:3000/upload/fileInfo", res.data, {
+        return axios.put("https://api.videopsi.com/upload/fileInfo", res.data, {
           headers: { Authorization: jwtToken }
         });
       })

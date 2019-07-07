@@ -45,7 +45,7 @@ class App extends React.Component {
   checkAlreadyLoggedIn = () => {
     let jwtToken = "JWT " + this.state.token;
     axios
-      .get("http://localhost:3000/returningUser", {
+      .get("https://api.videopsi.com/returningUser", {
         headers: { Authorization: jwtToken }
       })
       .then(res => {
@@ -59,7 +59,7 @@ class App extends React.Component {
 
   handleLogin = (username, password) => {
     axios
-      .post("http://localhost:3000/loginUser", {
+      .post("https://api.videopsi.com/loginUser", {
         username,
         password
       })
@@ -78,7 +78,7 @@ class App extends React.Component {
 
   handleRegister = (username, password, first_name, last_name, email) => {
     axios
-      .post("http://localhost:3000/registerUser", {
+      .post("https://api.videopsi.com/registerUser", {
         username,
         password,
         first_name,
