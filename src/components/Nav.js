@@ -6,7 +6,7 @@ class Nav extends React.Component {
   render() {
     return (
       <Row>
-        <Col className="h1">radiostar</Col>
+        <Col className="h1">VideoPsi</Col>
         <Col className="h1 text-right">Login Component</Col>
       </Row>
     );
