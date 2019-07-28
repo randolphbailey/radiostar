@@ -112,7 +112,7 @@ class App extends React.Component {
       <Container>
         <Row>
           <Col xs={12} md={3} className="h1">
-            radiostar
+            VideoPsi
           </Col>
           <Col xs={12} md={9} className="h1 text-right">
             {content}
