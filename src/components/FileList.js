@@ -18,7 +18,10 @@ class FileList extends React.Component {
   componentDidMount() {
     fetch("https://api.videopsi.com/videolist")
       .then(res => res.json())
-      .then(res => this.setState({ sources: res.body }))
+      .then(res => {
+        console.log(res);
+        this.setState({ sources: res });
+      })
       .catch(err => console.log("Error fetching videos", err));
   }
 
