@@ -133,7 +133,7 @@ class App extends React.Component {
               <Col>{this.state.description}</Col>
             </Row>
           </Col>
-          <FileList />
+          <FileList setVideoParams={this.setVideoParams} />
         </Row>
       </Container>
     );

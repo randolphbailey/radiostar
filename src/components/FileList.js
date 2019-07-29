@@ -15,16 +15,28 @@ class FileList extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    fetch("https://api.videopsi.com/videolist")
+      .then(res => res.json())
+      .then(res => this.setState({ sources: res.body }))
+      .catch(err => console.log("Error fetching videos", err));
+  }
 
   render() {
     return (
       <Col className="col-3">
         {this.state.sources.map((val, i) => {
-          let sourceNum = i + 1;
           return (
-            <Button key={i} onClick={() => this.setState({ src: val })}>
-              Source #{sourceNum}
+            <Button
+              key={i}
+              onClick={() =>
+                this.params.setVideoParams({
+                  src: val.videoURL,
+                  description: val.description
+                })
+              }
+            >
+              {val.title}
             </Button>
           );
         })}
