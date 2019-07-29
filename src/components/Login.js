@@ -6,12 +6,6 @@ import Form from "react-bootstrap/Form";
 class Login extends React.Component {
   constructor(props, context) {
     super(props, context);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-
     this.state = {
       show: false,
       username: "",
@@ -23,21 +17,21 @@ class Login extends React.Component {
     this.setState({ show: false });
   }
 
-  handleClose() {
+  handleClose = () => {
     this.setState({ show: false });
-  }
+  };
 
-  handleShow() {
+  handleShow = () => {
     this.setState({ show: true });
-  }
+  };
 
-  handleUsernameChange(e) {
+  handleUsernameChange = e => {
     this.setState({ username: e.target.value });
-  }
+  };
 
-  handlePasswordChange(e) {
+  handlePasswordChange = e => {
     this.setState({ password: e.target.value });
-  }
+  };
 
   render() {
     return (

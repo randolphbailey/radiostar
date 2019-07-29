@@ -7,14 +7,6 @@ class Register extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
-    this.handleLastNameChange = this.handleLastNameChange.bind(this);
-
     this.state = {
       show: false,
       username: "",
@@ -29,33 +21,33 @@ class Register extends React.Component {
     this.setState({ show: false });
   }
 
-  handleClose() {
+  handleClose = () => {
     this.setState({ show: false });
-  }
+  };
 
-  handleShow() {
+  handleShow = () => {
     this.setState({ show: true });
-  }
+  };
 
-  handleUsernameChange(e) {
+  handleUsernameChange = e => {
     this.setState({ username: e.target.value });
-  }
+  };
 
-  handlePasswordChange(e) {
+  handlePasswordChange = e => {
     this.setState({ password: e.target.value });
-  }
+  };
 
-  handleEmailChange(e) {
+  handleEmailChange = e => {
     this.setState({ email: e.target.value });
-  }
+  };
 
-  handleFirstNameChange(e) {
+  handleFirstNameChange = e => {
     this.setState({ first_name: e.target.value });
-  }
+  };
 
-  handleLastNameChange(e) {
+  handleLastNameChange = e => {
     this.setState({ last_name: e.target.value });
-  }
+  };
 
   render() {
     return (

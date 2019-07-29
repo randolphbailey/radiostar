@@ -18,13 +18,9 @@ class FileUpload extends React.Component {
       title: "",
       description: ""
     };
-    this.handleFile = this.handleFile.bind(this);
-    this.handleFileUpload = this.handleFileUpload.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
   }
 
-  handleFileUpload(event) {
+  handleFileUpload = event => {
     event.preventDefault();
 
     //Update upload status state to begin upload
@@ -87,10 +83,10 @@ class FileUpload extends React.Component {
         return "Success";
       })
       .catch(err => console.log(err));
-  }
+  };
 
   //SHA-1 hash generator for file integrity verification
-  handleFile(event) {
+  handleFile = event => {
     //function to convert byte code to hexadecimal string
     let hexString = function(buffer) {
       const byteArray = new Uint8Array(buffer);
@@ -124,15 +120,15 @@ class FileUpload extends React.Component {
       });
     };
     Reader.readAsArrayBuffer(file);
-  }
+  };
 
-  handleTitleChange(e) {
+  handleTitleChange = e => {
     this.setState({ title: e.target.value });
-  }
+  };
 
-  handleDescriptionChange(e) {
+  handleDescriptionChange = e => {
     this.setState({ description: e.target.value });
-  }
+  };
 
   render() {
     let buttonEnable = !this.state.readyToUpload;
