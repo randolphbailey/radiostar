@@ -34,7 +34,7 @@ class FileUpload extends React.Component {
     };
 
     fetch("https://api.videopsi.com/upload/getURL", {
-      headers: { Authorization: jwtToken },
+      headers: { Authorization: jwtToken, "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify(videoInfo)
     })
