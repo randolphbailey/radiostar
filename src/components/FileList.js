@@ -7,10 +7,26 @@ class FileList extends React.Component {
     super(props);
     this.state = {
       sources: [
-        "http://media.w3.org/2010/05/sintel/trailer.mp4",
-        "http://media.w3.org/2010/05/bunny/trailer.mp4",
-        "http://media.w3.org/2010/05/bunny/movie.mp4",
-        "http://media.w3.org/2010/05/video/movie_300.webm"
+        {
+          videoURL: "http://media.w3.org/2010/05/sintel/trailer.mp4",
+          title: "Source 1",
+          description: "Test Video"
+        },
+        {
+          videoURL: "http://media.w3.org/2010/05/bunny/trailer.mp4",
+          title: "Source 1",
+          description: "Test Video"
+        },
+        {
+          videoURL: "http://media.w3.org/2010/05/bunny/movie.mp4",
+          title: "Source 1",
+          description: "Test Video"
+        },
+        {
+          videoURL: "http://media.w3.org/2010/05/video/movie_300.webm",
+          title: "Source 1",
+          description: "Test Video"
+        }
       ]
     };
   }
