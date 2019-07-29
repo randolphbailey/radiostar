@@ -28,10 +28,15 @@ class FileUpload extends React.Component {
 
     let jwtToken = "JWT " + this.props.jwt;
 
-    console.log(jwtToken);
+    let videoInfo = {
+      title: this.state.title,
+      description: this.state.description
+    };
 
     fetch("https://api.videopsi.com/upload/getURL", {
-      headers: { Authorization: jwtToken }
+      headers: { Authorization: jwtToken },
+      method: "POST",
+      body: JSON.stringify(videoInfo)
     })
       //Fetch upload info and convert to json
       .then(res => res.json())
@@ -51,9 +56,7 @@ class FileUpload extends React.Component {
             "X-Bz-File-Name": res.vId + "." + extension,
             "Content-Type": "b2/x-auto",
             "X-Bz-Content-Sha1": this.state.shasum,
-            "X-Bz-Info-vid": res.vId,
-            "X-Bz-Info-title": this.state.title,
-            "X-Bz-Info-description": this.state.description
+            "X-Bz-Info-vid": res.vId
           },
           //Set up upload event to monitor upload via progress bar
           onUploadProgress: event => {
