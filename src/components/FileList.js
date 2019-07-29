@@ -18,10 +18,7 @@ class FileList extends React.Component {
   componentDidMount() {
     fetch("https://api.videopsi.com/videolist")
       .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        this.setState({ sources: res });
-      })
+      .then(res => this.setState({ sources: res }))
       .catch(err => console.log("Error fetching videos", err));
   }
 
@@ -33,7 +30,7 @@ class FileList extends React.Component {
             <Button
               key={i}
               onClick={() =>
-                this.params.setVideoParams({
+                this.props.setVideoParams({
                   src: val.videoURL,
                   description: val.description
                 })
