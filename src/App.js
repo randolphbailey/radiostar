@@ -35,6 +35,11 @@ class App extends React.Component {
       await this.setState({ token: token });
       this.checkAlreadyLoggedIn();
     }
+    if (this.props.vId !== null) {
+      let URLSRC =
+        "https://v.videopsi.com/file/videopsi/" + this.props.vId + ".mp4";
+      this.setState({ src: URLSRC });
+    }
   }
 
   handleLogout = () => {
