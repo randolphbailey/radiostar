@@ -46,9 +46,17 @@ class App extends React.Component {
   checkAlreadyLoggedIn = () => {
     let jwtToken = "JWT " + this.state.token;
     axios
-      .get("https://api.videopsi.com/returningUser", {
-        headers: { Authorization: jwtToken }
-      })
+      .get(
+        "https://api.videopsi.com/returningUser",
+        {
+          headers: { Authorization: jwtToken }
+        },
+        {
+          validateStatus: status => {
+            return true;
+          }
+        }
+      )
       .then(res => {
         if (res.data.isAuthenticated === true) {
           this.setState({ isAuthenticated: true, user: res.data.username });
@@ -57,16 +65,27 @@ class App extends React.Component {
         }
       })
       .catch(err =>
-        console.error("Error checking if user is already logged in: ", err)
+        console.error(
+          "Network error checking if user is already logged in: ",
+          err
+        )
       );
   };
 
   handleLogin = (username, password) => {
     axios
-      .post("https://api.videopsi.com/loginUser", {
-        username,
-        password
-      })
+      .post(
+        "https://api.videopsi.com/loginUser",
+        {
+          username,
+          password
+        },
+        {
+          validateStatus: status => {
+            return true;
+          }
+        }
+      )
       .then(res => {
         if (res.data.auth) {
           this.setState({
@@ -77,18 +96,26 @@ class App extends React.Component {
           localStorage.setItem("token", res.data.token);
         }
       })
-      .catch(err => console.error("Login Error: ", err));
+      .catch(err => console.error("Network Error on Login:", err));
   };
 
   handleRegister = (username, password, first_name, last_name, email) => {
     axios
-      .post("https://api.videopsi.com/registerUser", {
-        username,
-        password,
-        first_name,
-        last_name,
-        email
-      })
+      .post(
+        "https://api.videopsi.com/registerUser",
+        {
+          username,
+          password,
+          first_name,
+          last_name,
+          email
+        },
+        {
+          validateStatus: status => {
+            return true;
+          }
+        }
+      )
       .then(res => {
         if (res.status === 200) {
           this.handleLogin(username, password);
@@ -96,7 +123,7 @@ class App extends React.Component {
           console.log("Registration Failed");
         }
       })
-      .catch(err => console.error("Error registering user: ", err));
+      .catch(err => console.error("Network error when registering user:", err));
   };
 
   render() {
