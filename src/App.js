@@ -13,16 +13,13 @@ import Register from "./components/Register";
 import FileList from "./components/FileList";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      src: "",
-      description: "This is some info from the App component state",
-      isAuthenticated: false,
-      user: null,
-      token: ""
-    };
-  }
+  state = {
+    src: "",
+    description: "This is some info from the App component state",
+    isAuthenticated: false,
+    user: null,
+    token: ""
+  };
 
   async componentDidMount() {
     if ("token" in localStorage) {

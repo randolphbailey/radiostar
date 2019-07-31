@@ -4,13 +4,9 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 class UploadModal extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      show: false
-    };
-  }
+  state = {
+    show: false
+  };
 
   render() {
     return (

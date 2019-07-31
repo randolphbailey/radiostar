@@ -4,18 +4,14 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
 class Register extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      show: false,
-      username: "",
-      password: "",
-      first_name: "",
-      last_name: "",
-      email: ""
-    };
-  }
+  state = {
+    show: false,
+    username: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    email: ""
+  };
 
   handleFormChange = e => {
     const { id, value } = e.target;

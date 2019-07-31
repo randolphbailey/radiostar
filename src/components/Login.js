@@ -4,14 +4,11 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
 class Login extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      show: false,
-      username: "",
-      password: ""
-    };
-  }
+  state = {
+    show: false,
+    username: "",
+    password: ""
+  };
 
   handleFormChange = e => {
     const { id, value } = e.target;

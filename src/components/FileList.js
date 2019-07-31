@@ -3,33 +3,30 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 class FileList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sources: [
-        {
-          videoURL: "http://media.w3.org/2010/05/sintel/trailer.mp4",
-          title: "Source 1",
-          description: "Test Video"
-        },
-        {
-          videoURL: "http://media.w3.org/2010/05/bunny/trailer.mp4",
-          title: "Source 1",
-          description: "Test Video"
-        },
-        {
-          videoURL: "http://media.w3.org/2010/05/bunny/movie.mp4",
-          title: "Source 1",
-          description: "Test Video"
-        },
-        {
-          videoURL: "http://media.w3.org/2010/05/video/movie_300.webm",
-          title: "Source 1",
-          description: "Test Video"
-        }
-      ]
-    };
-  }
+  state = {
+    sources: [
+      {
+        videoURL: "http://media.w3.org/2010/05/sintel/trailer.mp4",
+        title: "Source 1",
+        description: "Test Video"
+      },
+      {
+        videoURL: "http://media.w3.org/2010/05/bunny/trailer.mp4",
+        title: "Source 1",
+        description: "Test Video"
+      },
+      {
+        videoURL: "http://media.w3.org/2010/05/bunny/movie.mp4",
+        title: "Source 1",
+        description: "Test Video"
+      },
+      {
+        videoURL: "http://media.w3.org/2010/05/video/movie_300.webm",
+        title: "Source 1",
+        description: "Test Video"
+      }
+    ]
+  };
 
   componentDidMount() {
     fetch("https://api.videopsi.com/videolist")

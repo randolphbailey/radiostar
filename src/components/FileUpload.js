@@ -7,18 +7,15 @@ import Form from "react-bootstrap/Form";
 //comment
 
 class FileUpload extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      uploadProgress: 0,
-      file: null,
-      uploadStatus: "",
-      shasum: "",
-      readyToUpload: false,
-      title: "",
-      description: ""
-    };
-  }
+  state = {
+    uploadProgress: 0,
+    file: null,
+    uploadStatus: "",
+    shasum: "",
+    readyToUpload: false,
+    title: "",
+    description: ""
+  };
 
   handleFileUpload = event => {
     event.preventDefault();
