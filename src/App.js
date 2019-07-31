@@ -55,7 +55,10 @@ class App extends React.Component {
         } else {
           this.setState({ token: "" });
         }
-      });
+      })
+      .catch(err =>
+        console.error("Error checking if user is already logged in: ", err)
+      );
   };
 
   handleLogin = (username, password) => {
@@ -92,7 +95,8 @@ class App extends React.Component {
         } else {
           console.log("Registration Failed");
         }
-      });
+      })
+      .catch(err => console.error("Error registering user: ", err));
   };
 
   render() {

@@ -39,12 +39,9 @@ class FileUpload extends React.Component {
       .then(res => res.json())
       //pass upload parameters into file upload method
       .then(res => {
-        let URL = res.uploadUrl;
-        let fileName = this.state.file.name;
-
         //Grab file extension
-        let splitName = fileName.split(".");
-        let extension = splitName.pop();
+        let extension = this.state.file.name.split(".").pop();
+
         //Configure parameters for axios file upload from response received
         let config = {
           //Set required B2 headers
@@ -70,7 +67,7 @@ class FileUpload extends React.Component {
         this.setState({ uploadStatus: "Uploading..." });
 
         //Upload file, return promise to continue chain
-        return axios.post(URL, this.state.file, config);
+        return axios.post(res.uploadUrl, this.state.file, config);
       })
       .then(res => {
         //Send File info back to backend server
@@ -106,6 +103,8 @@ class FileUpload extends React.Component {
       uploadStatus: "Starting file verification...",
       readyToUpload: false
     });
+
+    //Compute SHA-1 hash for file to be uploaded
     let Reader = new FileReader();
     Reader.onloadend = e => {
       this.setState({ uploadStatus: "Verifying file integrity..." });
