@@ -17,46 +17,22 @@ class Register extends React.Component {
     };
   }
 
-  componentWillUnmount() {
-    this.setState({ show: false });
-  }
-
-  handleClose = () => {
-    this.setState({ show: false });
-  };
-
-  handleShow = () => {
-    this.setState({ show: true });
-  };
-
-  handleUsernameChange = e => {
-    this.setState({ username: e.target.value });
-  };
-
-  handlePasswordChange = e => {
-    this.setState({ password: e.target.value });
-  };
-
-  handleEmailChange = e => {
-    this.setState({ email: e.target.value });
-  };
-
-  handleFirstNameChange = e => {
-    this.setState({ first_name: e.target.value });
-  };
-
-  handleLastNameChange = e => {
-    this.setState({ last_name: e.target.value });
+  handleFormChange = e => {
+    const { id, value } = e.target;
+    this.setState({ [id]: value });
   };
 
   render() {
     return (
       <>
-        <Button variant="primary" onClick={this.handleShow}>
+        <Button variant="primary" onClick={() => this.setState({ show: true })}>
           Register
         </Button>
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal
+          show={this.state.show}
+          onHide={() => this.setState({ show: false })}
+        >
           <Modal.Header closeButton>
             <Modal.Title>Register</Modal.Title>
           </Modal.Header>
@@ -67,7 +43,7 @@ class Register extends React.Component {
                 <Form.Control
                   type="text"
                   value={this.state.first_name}
-                  onChange={e => this.handleFirstNameChange(e)}
+                  onChange={e => this.handleFormChange(e)}
                 />
               </Form.Group>
               <Form.Group controlId="last_name">
@@ -75,7 +51,7 @@ class Register extends React.Component {
                 <Form.Control
                   type="text"
                   value={this.state.last_name}
-                  onChange={e => this.handleLastNameChange(e)}
+                  onChange={e => this.handleFormChange(e)}
                 />
               </Form.Group>
               <Form.Group controlId="email">
@@ -83,7 +59,7 @@ class Register extends React.Component {
                 <Form.Control
                   type="text"
                   value={this.state.email}
-                  onChange={e => this.handleEmailChange(e)}
+                  onChange={e => this.handleFormChange(e)}
                 />
               </Form.Group>
               <Form.Group controlId="username">
@@ -91,7 +67,7 @@ class Register extends React.Component {
                 <Form.Control
                   type="text"
                   value={this.state.username}
-                  onChange={e => this.handleUsernameChange(e)}
+                  onChange={e => this.handleFormChange(e)}
                 />
               </Form.Group>
               <Form.Group controlId="password">
@@ -99,7 +75,7 @@ class Register extends React.Component {
                 <Form.Control
                   type="password"
                   value={this.state.password}
-                  onChange={e => this.handlePasswordChange(e)}
+                  onChange={e => this.handleFormChange(e)}
                 />
               </Form.Group>
               <Button
@@ -119,7 +95,10 @@ class Register extends React.Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
+            <Button
+              variant="secondary"
+              onClick={() => this.setState({ show: false })}
+            >
               Close
             </Button>
           </Modal.Footer>

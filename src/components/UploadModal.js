@@ -12,22 +12,17 @@ class UploadModal extends React.Component {
     };
   }
 
-  handleClose = () => {
-    this.setState({ show: false });
-  };
-
-  handleShow = () => {
-    this.setState({ show: true });
-  };
-
   render() {
     return (
       <>
-        <Button variant="success" onClick={this.handleShow}>
+        <Button variant="success" onClick={() => this.setState({ show: true })}>
           Upload File
         </Button>
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal
+          show={this.state.show}
+          onHide={() => this.setState({ show: false })}
+        >
           <Modal.Header closeButton>
             <Modal.Title>File Upload</Modal.Title>
           </Modal.Header>
@@ -35,7 +30,10 @@ class UploadModal extends React.Component {
             <FileUpload jwt={this.props.jwt} />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
+            <Button
+              variant="secondary"
+              onClick={() => this.setState({ show: false })}
+            >
               Close
             </Button>
           </Modal.Footer>

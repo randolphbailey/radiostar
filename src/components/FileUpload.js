@@ -125,12 +125,9 @@ class FileUpload extends React.Component {
     Reader.readAsArrayBuffer(file);
   };
 
-  handleTitleChange = e => {
-    this.setState({ title: e.target.value });
-  };
-
-  handleDescriptionChange = e => {
-    this.setState({ description: e.target.value });
+  handleFormChange = e => {
+    const { id, value } = e.target;
+    this.setState({ [id]: value });
   };
 
   render() {
@@ -143,7 +140,7 @@ class FileUpload extends React.Component {
             <Form.Control
               type="text"
               value={this.state.title}
-              onChange={this.handleTitleChange}
+              onChange={e => this.handleFormChange(e)}
             />
           </Form.Group>
           <Form.Group controlId="description">
@@ -151,7 +148,7 @@ class FileUpload extends React.Component {
             <Form.Control
               type="text"
               value={this.state.description}
-              onChange={this.handleDescriptionChange}
+              onChange={e => this.handleFormChange(e)}
             />
           </Form.Group>
           <Form.Group controlId="file">
