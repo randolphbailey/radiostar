@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import axios from "axios";
 import Register from "./components/Register";
 import FileList from "./components/FileList";
+import AlertShell from "./components/AlertShell";
 
 class App extends React.Component {
   state = {
@@ -18,7 +19,8 @@ class App extends React.Component {
     description: "This is some info from the App component state",
     isAuthenticated: false,
     user: null,
-    token: ""
+    token: "",
+    alert: []
   };
 
   async componentDidMount() {
@@ -33,6 +35,10 @@ class App extends React.Component {
       this.setState({ src: URLSRC });
     }
   }
+
+  createAlert = (variant, message) => {
+    this.setState({ alert: [{ variant, message }] });
+  };
 
   setVideoParams = arg => {
     this.setState(arg);
@@ -127,6 +133,8 @@ class App extends React.Component {
   };
 
   render() {
+    //let blah = "success";
+    //let otherblah = "test alert";
     let content = !!this.state.isAuthenticated ? (
       <>
         Welcome {this.state.user} | <UploadModal jwt={this.state.token} /> |{" "}
@@ -142,6 +150,7 @@ class App extends React.Component {
     );
     return (
       <Container>
+        {/* <AlertShell variant={blah} message={otherblah} /> */}
         <Row>
           <Col xs={12} md={3} className="h1">
             VideoPsi
