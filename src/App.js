@@ -11,7 +11,6 @@ import Login from "./components/Login";
 import axios from "axios";
 import Register from "./components/Register";
 import FileList from "./components/FileList";
-import AlertShell from "./components/AlertShell";
 
 class App extends React.Component {
   state = {

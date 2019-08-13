@@ -6,24 +6,9 @@ class FileList extends React.Component {
   state = {
     sources: [
       {
-        videoURL: "http://media.w3.org/2010/05/sintel/trailer.mp4",
-        title: "Source 1",
-        description: "Test Video"
-      },
-      {
-        videoURL: "http://media.w3.org/2010/05/bunny/trailer.mp4",
-        title: "Source 1",
-        description: "Test Video"
-      },
-      {
-        videoURL: "http://media.w3.org/2010/05/bunny/movie.mp4",
-        title: "Source 1",
-        description: "Test Video"
-      },
-      {
-        videoURL: "http://media.w3.org/2010/05/video/movie_300.webm",
-        title: "Source 1",
-        description: "Test Video"
+        videoURL: "",
+        title: "Please Login to See Your Videos",
+        description: "Please login to see your videos."
       }
     ]
   };
