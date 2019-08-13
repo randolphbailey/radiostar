@@ -15,7 +15,7 @@ import FileList from "./components/FileList";
 class App extends React.Component {
   state = {
     src: "",
-    description: "This is some info from the App component state",
+    description: "Please login to see your videos",
     isAuthenticated: false,
     user: null,
     token: "",
